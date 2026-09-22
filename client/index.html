@@ -1208,7 +1208,9 @@ window.TUTOOTH_MUSIC_VERSION = '2026-08-10.1';
      music    抽屉头已经在显示歌名，重复
      ⤢ 迷你窗 缩窗是父页的事，iframe 里 resizeTo 根本无效
    撤掉顶栏省 52px、导航瘦身省 18px，都还给内容区。 */
-const isEmbedded = true;
+const isEmbedded = (() => {
+  try { return window.self !== window.top; } catch { return true; }
+})();
 
 // ── Auth token (direct mode only) ──
 //    走反代时反代注入网关头，浏览器不存第二枚 token（TOKEN 为空，下面全是空操作）。
